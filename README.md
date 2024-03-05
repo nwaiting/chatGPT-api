@@ -37,5 +37,5 @@
 修改需要使用的模型，在apis/config.py的CHATGPT_CHAT_MODEL配置聊天的模型名字，在apis/config.py的CHATGPT_IMAGE_MODEL配置生成图片的模型名字
 
 
-## 微信
+## 交流沟通
 <img src="./images/wx.jpg" width="249"/>
