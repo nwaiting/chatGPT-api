@@ -14,7 +14,7 @@ class OpenAIChat(BaseAI):
 
     def chat(self, text, model="gpt-3.5-turbo"):
         self._chat_chat_session.append({"role": "user", "content": text})
-        response = openai.ChatCompletion.create(
+        response = self.client.chat.completions.create(
             model=model,
             messages=self._chat_chat_session
         )
@@ -22,31 +22,63 @@ class OpenAIChat(BaseAI):
         self._chat_chat_session.append({"role": "assistant", "content": res})
         return res
 
-    def text2image(self, text, model=None):
-        response = openai.Image.create(
+    def text2image(self, text, model=None, size="1024x1024"):
+        model = model or 'dall-e-3'
+        response = self.client.images.generate(
+            model=model,
             prompt=text,
+            size=size,
+            quality="standard",
             n=1,
-            size="1024x1024"
         )
-        return response['data'][0]['url']
+        return response.data[0].url
 
-    def editImage(self, text, source_img, mask_img):
-        response = openai.Image.create_edit(
+    def editImage(self, text, source_img, mask_img, model=None):
+        model = model or "dall-e-2"
+        response = self.client.images.edit(
+            model=model,
             image=open(source_img, "rb"),
             mask=open(mask_img, "rb"),
             prompt=text,
             n=1,
             size="1024x1024"
         )
-        return response['data'][0]['url']
+        return response.data[0].url
 
-    def changeImage(self, source_img):
-        response = openai.Image.create_variation(
+    def changeImage(self, source_img, size="1024x1024"):
+        response = self.client.images.create_variation(
             image=open(source_img, "rb"),
-            n=1,
-            size="1024x1024"
+            n=2,
+            size=size
         )
-        return response['data'][0]['url']
 
+        return response.data[0].url
 
+    def getEmbeddings(self, text, model=None):
+        model = "text-embedding-3-small" or model
+        response = self.client.embeddings.create(
+            input=text,
+            model=model
+        )
+        return response.data[0].embedding
+
+    def text2voice(self, text, model=None, speech_file_path=None):
+        model = model or "tts-1"
+        response = self.client.audio.speech.create(
+            model=model,
+            voice="alloy",
+            input=text
+        )
+
+        return response.stream_to_file(speech_file_path)
+
+    def voice2text(self, audio_file, model="whisper-1"):
+        model = model or "whisper-1"
+        with open(audio_file, "rb") as audio_file:
+            transcription = self.client.audio.transcriptions.create(
+                model=model,
+                file=audio_file,
+                response_format="text"
+            )
+            return transcription.text
 

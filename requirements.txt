@@ -2,3 +2,4 @@ requests
 openai
 dashscope
 zhipuai
+vertexai
