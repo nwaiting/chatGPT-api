@@ -28,19 +28,19 @@
 
 支持接口：
 
-chat            [聊天]()
+chat            [聊天](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-getEmbeddings   [获取文本的embeddings]()
+getEmbeddings   [获取文本的embeddings](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-text2image      [文本生成图片]()
+text2image      [文本生成图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-editImage       [编辑图片]()
+editImage       [编辑图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-changeImage     [修改图片]()
+changeImage     [修改图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-text2voice      [文本生成语音]()
+text2voice      [文本生成语音](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-voice2text      [语音生成文本]()
+voice2text      [语音生成文本](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
 
 #### *googleai*
