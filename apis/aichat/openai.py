@@ -13,6 +13,12 @@ class OpenAIChat(BaseAI):
         self._chat_chat_session = [{"role": "system", "content": "你是一个能干的助手."}]
 
     def chat(self, text, model="gpt-3.5-turbo"):
+        """
+        聊天助手
+        :param text:
+        :param model:
+        :return:
+        """
         self._chat_chat_session.append({"role": "user", "content": text})
         response = self.client.chat.completions.create(
             model=model,
@@ -23,6 +29,13 @@ class OpenAIChat(BaseAI):
         return res
 
     def text2image(self, text, model=None, size="1024x1024"):
+        """
+        文字生成图片
+        :param text:
+        :param model:
+        :param size:
+        :return:
+        """
         model = model or 'dall-e-3'
         response = self.client.images.generate(
             model=model,
@@ -34,6 +47,14 @@ class OpenAIChat(BaseAI):
         return response.data[0].url
 
     def editImage(self, text, source_img, mask_img, model=None):
+        """
+        编辑图片
+        :param text:
+        :param source_img:
+        :param mask_img:
+        :param model:
+        :return:
+        """
         model = model or "dall-e-2"
         response = self.client.images.edit(
             model=model,
@@ -46,6 +67,12 @@ class OpenAIChat(BaseAI):
         return response.data[0].url
 
     def changeImage(self, source_img, size="1024x1024"):
+        """
+        修改图片
+        :param source_img:
+        :param size:
+        :return:
+        """
         response = self.client.images.create_variation(
             image=open(source_img, "rb"),
             n=2,
@@ -55,6 +82,12 @@ class OpenAIChat(BaseAI):
         return response.data[0].url
 
     def getEmbeddings(self, text, model=None):
+        """
+        获取文本的embedding
+        :param text:
+        :param model:
+        :return:
+        """
         model = "text-embedding-3-small" or model
         response = self.client.embeddings.create(
             input=text,
@@ -63,6 +96,13 @@ class OpenAIChat(BaseAI):
         return response.data[0].embedding
 
     def text2voice(self, text, model=None, speech_file_path=None):
+        """
+        文本生成语音
+        :param text:
+        :param model:
+        :param speech_file_path:
+        :return:
+        """
         model = model or "tts-1"
         response = self.client.audio.speech.create(
             model=model,
@@ -73,6 +113,12 @@ class OpenAIChat(BaseAI):
         return response.stream_to_file(speech_file_path)
 
     def voice2text(self, audio_file, model="whisper-1"):
+        """
+        语音生成文本
+        :param audio_file:
+        :param model:
+        :return:
+        """
         model = model or "whisper-1"
         with open(audio_file, "rb") as audio_file:
             transcription = self.client.audio.transcriptions.create(
