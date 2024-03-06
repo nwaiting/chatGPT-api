@@ -16,6 +16,7 @@ class QianwenAI(BaseAI):
         dashscope.api_key = _api_key
 
     def chat(self, text, model='qwen-turbo'):
+        model = model or 'qwen-turbo'
         response = dashscope.Generation.call(
             model=model,
             prompt=text,

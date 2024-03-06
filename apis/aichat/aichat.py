@@ -20,7 +20,7 @@ class AIChat(object):
         if _model_type not in obj_dict:
             logger.error("model type:{} error, exit".format(_model_type))
             raise Exception('不支持的模型接口')
-        self._client = obj_dict.get(model_type)
+        self._client = obj_dict.get(_model_type)
 
     def chat(self, text, model=None):
         return self._client.chat(text, model)

@@ -24,6 +24,7 @@ class BaiduAI(BaseAI):
         return response.json().get("access_token")
 
     def chat(self, text, model="gpt-3.5-turbo"):
+        model = model or "gpt-3.5-turbo"
         url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/chatBaidu?access_token=" + self.getAccessToken()
         self._chat_chat_session.append({
                     "role": "user",
