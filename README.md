@@ -67,7 +67,7 @@
 
 [应用训练的模型](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
 
-[应用训练的模型](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+[训练模型推理结果](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
 
 [证件照、商务写真等](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
 

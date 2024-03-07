@@ -181,7 +181,7 @@ class QianwenAI(BaseAI):
 
     def image_fine_task(self, file_id, model="facechain-finetune"):
         """
-        应用模型
+        应用训练模型
         完成训练数据的上传之后，就可以使用在上传之后得到的 file_id 发起facechain模型定制任务了
         :param file_id:
         :return:
@@ -201,7 +201,7 @@ class QianwenAI(BaseAI):
 
     def image_fine_task_result(self, job_id):
         """
-        应用训练的模型
+        训练模型推理结果
         查询模型定制任务的状态，并在任务完成之后获取对应的任务结果。当训练任务成功之后，就可以使用对应的 finetuned_output 内容做推理调用
         :param job_id:
         :return:
