@@ -3,3 +3,5 @@ openai
 dashscope
 zhipuai
 vertexai
+google-cloud-aiplatform
+google-generativeai

@@ -3,6 +3,7 @@ from .openai import OpenAIChat
 from .qianwenai import QianwenAI
 from .baiduai import BaiduAI
 from .zhipuai import ZhipuAIChat
+from .googleai import GoogleAIChat
 from apis.constant import ModelTypes
 import logging
 
@@ -15,7 +16,8 @@ class AIChat(object):
             ModelTypes.ModelTypes_BAIDU: BaiduAI(_api_key=_api_key, _secret_key=_secret_key),
             ModelTypes.ModelTypes_QIANWEN: QianwenAI(_api_key=_api_key, _secret_key=_secret_key),
             ModelTypes.ModelTypes_OPENAI: OpenAIChat(_api_key=_api_key, _secret_key=_secret_key),
-            ModelTypes.ModelTypes_ZHIPU: ZhipuAIChat(_api_key=_api_key, _secret_key=_secret_key)
+            ModelTypes.ModelTypes_ZHIPU: ZhipuAIChat(_api_key=_api_key, _secret_key=_secret_key),
+            ModelTypes.ModelTypes_GOOGLE: GoogleAIChat(_api_key=_api_key, _secret_key=_secret_key)
         }
         if _model_type not in obj_dict:
             logger.error("model type:{} error, exit".format(_model_type))

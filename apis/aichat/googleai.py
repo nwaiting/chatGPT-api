@@ -1,7 +1,10 @@
 import openai
-from vertexai.language_models import ChatModel
+from vertexai.preview.language_models import ChatModel, InputOutputTextPair
+from vertexai.preview.vision_models import ImageGenerationModel
+from google.generativeai import GenerativeModel, configure
 import logging
 from .baseai import BaseAI
+import PIL.Image
 
 logger = logging.getLogger(__file__)
 
@@ -9,64 +12,26 @@ logger = logging.getLogger(__file__)
 class GoogleAIChat(BaseAI):
     def __init__(self, _api_key=None, _secret_key=None):
         super(GoogleAIChat, self).__init__(_api_key, _secret_key)
+        configure(api_key=_api_key)
         self.client = None
+        self.client_vision = None
         self._chat_chat_session = [{"role": "system", "content": "你是一个能干的助手."}]
 
     def chat(self, text, model=""):
-        model = model or 'chat-bison@002'
-        self.client = ChatModel.from_pretrained(model)
+        model = model or 'gemini-pro'
+        self.client = GenerativeModel(model_name=model)
 
-        chat = self.client.start_chat(
-            context="My name is Ned. You are my personal assistant. My favorite movies are Lord of the Rings and Hobbit.",
-            examples=[
-                InputOutputTextPair(
-                    input_text="Who do you work for?",
-                    output_text="I work for Ned.",
-                ),
-                InputOutputTextPair(
-                    input_text="What do I like?",
-                    output_text="Ned likes watching movies.",
-                ),
-            ],
-            temperature=0.3,
-        )
+        res = self.client.generate_content(text)
+        return res.text
 
-        chat.send_message("Do you know any cool events this weekend?")
+    def image2text(self, text, image_path, model=None):
+        model = model or 'gemini-pro-vision'
+        multimodal_model = GenerativeModel(model)
 
-        self._chat_chat_session.append({"role": "user", "content": text})
-        response = openai.ChatCompletion.create(
-            model=model,
-            messages=self._chat_chat_session
-        )
-        res = response["choices"][0]["message"]
-        self._chat_chat_session.append({"role": "assistant", "content": res})
-        return res
+        image = PIL.Image.open(image_path)
 
-    def text2image(self, text, model=None):
-        response = openai.Image.create(
-            prompt=text,
-            n=1,
-            size="1024x1024"
-        )
-        return response['data'][0]['url']
-
-    def editImage(self, text, source_img, mask_img):
-        response = openai.Image.create_edit(
-            image=open(source_img, "rb"),
-            mask=open(mask_img, "rb"),
-            prompt=text,
-            n=1,
-            size="1024x1024"
-        )
-        return response['data'][0]['url']
-
-    def changeImage(self, source_img):
-        response = openai.Image.create_variation(
-            image=open(source_img, "rb"),
-            n=1,
-            size="1024x1024"
-        )
-        return response['data'][0]['url']
+        response = multimodal_model.generate_content([text, image])
+        return response.text
 
 
 
