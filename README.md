@@ -28,19 +28,19 @@
 
 支持接口：
 
-chat            [聊天](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
+[聊天](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-getEmbeddings   [获取文本的embeddings](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
+[获取文本的embeddings](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-text2image      [文本生成图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
+[文本生成图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-editImage       [编辑图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
+[编辑图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-changeImage     [修改图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
+[修改图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-text2voice      [文本生成语音](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
+[文本生成语音](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
-voice2text      [语音生成文本](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
+[语音生成文本](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
 
 #### *googleai*
@@ -50,6 +50,34 @@ voice2text      [语音生成文本](https://github.com/nwaiting/chatGPT-api/blo
 #### *千问*
 
 在apis/config.py中配置key，在 [官网](https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-qianwen-vl-api) 申请api的key
+
+支持接口：
+
+[聊天](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[文字生成图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[文字变形，生成艺术字](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[根据任务id获取结果](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[人物图像进行检测](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[训练模型](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[应用训练的模型](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[应用训练的模型](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[证件照、商务写真等](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[生成通用文本向量](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[生成图片embedding](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[结合图片和语音，生成Embedding](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[多模态生成embedding](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
 
 
 #### *文心一言*

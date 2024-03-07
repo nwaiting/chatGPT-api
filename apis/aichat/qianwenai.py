@@ -163,6 +163,7 @@ class QianwenAI(BaseAI):
 
     def image_fine_train(self, file_zip_path):
         """
+        训练模型
         本接口为模型定制类服务，需要相对较长的算法调用时间，所以在接口层面采用了异步调用的方式进行任务提交，在通过任务接口提交作业之后，系统会返回对应的作业ID，随后可以通过对模型定制类任务的查询/管理接口进行相应操作
         :param file_zip_path:
         :return:
@@ -180,6 +181,7 @@ class QianwenAI(BaseAI):
 
     def image_fine_task(self, file_id, model="facechain-finetune"):
         """
+        应用模型
         完成训练数据的上传之后，就可以使用在上传之后得到的 file_id 发起facechain模型定制任务了
         :param file_id:
         :return:
@@ -199,6 +201,7 @@ class QianwenAI(BaseAI):
 
     def image_fine_task_result(self, job_id):
         """
+        应用训练的模型
         查询模型定制任务的状态，并在任务完成之后获取对应的任务结果。当训练任务成功之后，就可以使用对应的 finetuned_output 内容做推理调用
         :param job_id:
         :return:
@@ -285,7 +288,7 @@ class QianwenAI(BaseAI):
 
     def get_multimodal_embedding(self, image, voice, text, model=MultiModalEmbedding.Models.multimodal_embedding_one_peace_v1):
         """
-        生成图片embedding
+        多模态生成embedding
         :param image:
         :param model:
         :return:
