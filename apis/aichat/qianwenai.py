@@ -94,7 +94,7 @@ class QianwenAI(BaseAI):
 
         return sample_block_call()
     
-    def text2image2(self, text, prompt, result_path='./', model='wordart-semantic', font="dongfangdakai"):
+    def text2image2(self, text, prompt, model='wordart-semantic', font="dongfangdakai"):
         """
         文字变形，生成艺术字
         :param text:
@@ -289,7 +289,7 @@ class QianwenAI(BaseAI):
         res = MultiModalEmbedding.call(model=model, input=input, auto_truncation=True)
         return 0, res
 
-    def get_multimodal_embedding(self, image, voice, text, model=MultiModalEmbedding.Models.multimodal_embedding_one_peace_v1):
+    def get_multimodal_embedding(self, text, image=None, voice=None, model=MultiModalEmbedding.Models.multimodal_embedding_one_peace_v1):
         """
         多模态生成embedding
         :param image:

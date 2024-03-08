@@ -17,9 +17,9 @@
 
 修改需要使用的模型，在apis/config.py的配置中
 
-    CHATGPT_CHAT_MODEL  配置聊天的模型名字
+    API_KEY  配置api key
 
-    CHATGPT_IMAGE_MODEL 配置生成图片的模型名字
+    SECRET_KEY 配置secret key
 
 
 #### *openai*
@@ -28,7 +28,7 @@
 
 支持接口：
 
-[聊天](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
+[问答](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
 [获取文本的embeddings](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
@@ -47,13 +47,24 @@
 
 在apis/config.py中配置key，在 [官网](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/gemini?hl=zh-cn) 申请api的key
 
+[问答](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/googleai.py)
+
+[图片生成文字](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/googleai.py)
+
+[文字生成图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/googleai.py)
+
+[根据图片回答问题](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/googleai.py)
+
+[多模态生成embedding](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/googleai.py)
+
+
 #### *千问*
 
 在apis/config.py中配置key，在 [官网](https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-qianwen-vl-api) 申请api的key
 
 支持接口：
 
-[聊天](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+[问答](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
 
 [文字生成图片](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
 
