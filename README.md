@@ -23,7 +23,7 @@
 
 #### 使用说明
 
-参考examples示例
+[参考examples示例](https://github.com/nwaiting/chatGPT-api/tree/master/examples)
 
 #### *openai*
 
