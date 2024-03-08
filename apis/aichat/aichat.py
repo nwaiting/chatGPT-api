@@ -24,17 +24,12 @@ class AIChat(object):
             raise Exception('不支持的模型接口')
         self._client = obj_dict.get(_model_type)
 
-    def chat(self, text, model=None):
-        return self._client.chat(text, model)
+    def get_obj(self):
+        return self._client
 
-    def text2image(self, text, model=None):
-        return self._client.text2image(text=text, model=model)
-    
-    def text2audio(self, text, model=None):
-        return self._client.text2audio(text=text, model=model)
 
-    def text2video(self, text, model=None):
-        return self._client.text2video(text=text, model=model)
+
+
 
 
 

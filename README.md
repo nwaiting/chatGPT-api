@@ -79,6 +79,12 @@
 
 [多模态生成embedding](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
 
+[文本理解任务](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[实时语音合成](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
+[翻译](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
+
 
 #### *文心一言*
 

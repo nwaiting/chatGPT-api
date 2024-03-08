@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 from http import HTTPStatus
 from urllib.parse import urlparse, unquote
 from pathlib import PurePosixPath
@@ -6,6 +7,8 @@ import requests
 import logging
 import dashscope
 from dashscope import MultiModalEmbedding
+from dashscope.api_entities.dashscope_response import SpeechSynthesisResponse
+from dashscope.audio.tts import ResultCallback, SpeechSynthesizer, SpeechSynthesisResult
 from .baseai import BaseAI
 
 logger = logging.getLogger(__file__)
@@ -298,3 +301,108 @@ class QianwenAI(BaseAI):
                  {'factor': 3, 'image': image}]
         res = MultiModalEmbedding.call(model=model, input=input, auto_truncation=True)
         return 0, res
+
+    def text_understanding(self, text, labels, task, model=None):
+        """
+        文本理解大模型，适用于中文、英文在零样本条件下进行文本理解任务，如信息抽取、文本分类等
+        :param text:
+        :param labels:
+        :param task:
+        :param model:
+        :return:
+        """
+        model = model or 'opennlu-v1'
+        task = task or 'classification'
+        response = dashscope.Understanding.call(
+            model=model,
+            sentence=text,
+            labels=labels,
+            task=task)
+
+        return response.status_code, response.output
+
+    def text2voice(self, text, voice_file, model=None):
+        """
+        语音合成提供的实时语音合成API，可将文字内容转化为音频。除语音数据外，可选择开启字级别和音素级别时间戳，用于生成字幕或驱动数字人嘴型
+        :param text:
+        :param voice_file:
+        :param model:
+        :return:
+        """
+        model = model or 'sambert-zhichu-v1'
+        result = SpeechSynthesizer.call(model=model,
+                                        text=text,
+                                        sample_rate=48000,
+                                        format='wav')
+
+        if result.get_audio_data() is not None:
+            with open(voice_file, 'wb') as f:
+                f.write(result.get_audio_data())
+        return 0, result.get_response()
+
+    def text2voiceStream(self, text, voice_file, model=None):
+        """
+        流式回调
+        语音合成提供的实时语音合成API，可将文字内容转化为音频。除语音数据外，可选择开启字级别和音素级别时间戳，用于生成字幕或驱动数字人嘴型
+        :param text:
+        :param voice_file:
+        :param model:
+        :return:
+        """
+        model = model or 'sambert-zhichu-v1'
+        class Callback(ResultCallback):
+            def on_open(self):
+                logger.info('Speech synthesizer is opened.')
+
+            def on_complete(self):
+                logger.info('Speech synthesizer is completed.')
+
+            def on_error(self, response: SpeechSynthesisResponse):
+                logger.info('Speech synthesizer failed, response:{}'.format(response))
+
+            def on_close(self):
+                logger.info('Speech synthesizer is closed.')
+
+            def on_event(self, result: SpeechSynthesisResult):
+                if result.get_audio_frame() is not None:
+                    logger.info('audio result length:{}'.format(sys.getsizeof(result.get_audio_frame())))
+
+                if result.get_timestamp() is not None:
+                    logger.info('timestamp result:{}'.format(result.get_timestamp()))
+
+        callback = Callback()
+        SpeechSynthesizer.call(model=model,
+                               text=text,
+                               sample_rate=48000,
+                               callback=callback,
+                               word_timestamp_enabled=True,
+                               phoneme_timestamp_enabled=True)
+        return 0, ''
+
+    def text_translate(self, text, model=None):
+        """
+        翻译
+        :param text:
+        :param model:
+        :return:
+        """
+        model = model or 'billa-7b-sft-v1'
+        response = dashscope.Generation.call(
+            model=model,
+            prompt=text
+        )
+
+        return response.status_code, response.output
+
+
+
+
+
+
+
+
+
+
+
+
+
