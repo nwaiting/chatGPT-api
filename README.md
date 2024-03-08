@@ -21,6 +21,9 @@
 
     SECRET_KEY 配置secret key
 
+#### 使用说明
+
+参考examples示例
 
 #### *openai*
 
