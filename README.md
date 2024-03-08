@@ -13,7 +13,7 @@
 
 ## Install
 
-#### 配置
+### 配置
 
 修改需要使用的模型，在apis/config.py的配置中
 
@@ -21,11 +21,11 @@
 
     SECRET_KEY 配置secret key
 
-#### 使用说明
+### 使用说明
 
 [参考examples示例](https://github.com/nwaiting/chatGPT-api/tree/master/examples)
 
-#### *openai*
+### [openai](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
 在apis/config.py中配置key，在 [官网](https://platform.openai.com/account/api-keys) 申请api的key
 
@@ -46,7 +46,7 @@
 [语音生成文本](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/openai.py)
 
 
-#### *googleai*
+### [googleai](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/googleai.py)
 
 在apis/config.py中配置key，在 [官网](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/gemini?hl=zh-cn) 申请api的key
 
@@ -61,7 +61,7 @@
 [多模态生成embedding](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/googleai.py)
 
 
-#### *千问*
+### [千问](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
 
 在apis/config.py中配置key，在 [官网](https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-qianwen-vl-api) 申请api的key
 
@@ -100,12 +100,12 @@
 [翻译](https://github.com/nwaiting/chatGPT-api/blob/master/apis/aichat/qianwenai.py)
 
 
-#### *文心一言*
+### [文心一言]()
 
 在apis/config.py中配置key，在 [官网](https://yiyan.baidu.com/welcome) 申请api的key
 
 
-#### *智谱AI*
+### [智谱AI]()
 
 在apis/config.py中配置key，在 [官网](https://maas.aminer.cn/) 申请api的key
 
